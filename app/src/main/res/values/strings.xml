@@ -1,8 +1,26 @@
 <resources>
-    <string name="app_name">OrderBoss</string>
+    <string name="app_name">Order</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="shop_name_dialog_title">請輸入店家名稱:</string>
+    <string name="shop_name_dialog_ok">確認</string>
+    <string name="shop_name_dialog_exit">離開</string>
+
+    <string name="nav_item_order">顧客點餐</string>
+    <string name="nav_item_menu">菜單</string>
+    <string name="nav_item_checkout">結帳</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_menu">菜單</string>
+
+    <string name="add_menu_dialog_title">新增餐點</string>
+    <string name="title_activity_checkout">結帳</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="remove_menu_dialog_title">是否要刪除此餐點 : </string>
+
+    <string name="notify_title">號桌的客人需要服務</string>
 </resources>
