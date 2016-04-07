@@ -19,6 +19,7 @@
         android:layout_height="match_parent"
         android:divider="@android:drawable/divider_horizontal_bright"
         android:padding="15dp"
+
         android:showDividers="middle">
 
         <TextView
@@ -36,8 +37,11 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/textView7"
+            android:background="@drawable/cooker"
             android:layout_weight="1"
-            android:paddingTop="5dp" />
+            android:paddingTop="5dp"
+            android:textColorHighlight="#ffffff"
+            android:textStyle="bold|italic" />
 
         <TextView
             android:layout_width="match_parent"

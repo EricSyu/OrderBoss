@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -44,6 +45,7 @@ public class OrderMealDB {
         item.setId(id);
 
         return item;
+
     }
 
     public boolean update(OrderMealItem item) {

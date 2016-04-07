@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.textView_tablenum.setText("桌號 : "+items.get(position).getTable()+" 桌");
-        holder.textView_orderItem.setText(items.get(position).getOrderItem());
+        holder.textView_orderItem.setText(items.get(position).getOrderItem()+" $");
         holder.textView_price.setText("金額 : "+items.get(position).getPrice()+" 元");
     }
 
