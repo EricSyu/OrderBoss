@@ -12,17 +12,17 @@ import java.sql.SQLData;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
-    private static final String DATABASE_NAME = "Order_Helper";
     private static SQLiteDatabase database;
+    private static String database_name = "OrderDB";
 
-    public DBHelper(Context context,String name,SQLiteDatabase.CursorFactory factory,int version){
-        super(context,DATABASE_NAME,null,VERSION);
+    public DBHelper(Context context){
+        super(context,database_name,null,VERSION);
     }
 
     /*function to call database*/
-    public static SQLiteDatabase DatabaseCaller(Context context){
-        if (database == null || !database.isOpen()){
-            database = new DBHelper(context,DATABASE_NAME,null,VERSION).getWritableDatabase();
+    public static SQLiteDatabase getDatabase(Context context){
+        if(database == null || !database.isOpen()){
+            database = new DBHelper(context).getWritableDatabase();
         }
         return database;
     }
@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String DATABASE_CREATE_TABLE_MENU = "create table Menu ( _ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name TEXT, Price INTEGER)";
-        String DATABASE_CREATE_TABLE_ORDER = "create table Order ( _ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name TEXT, Num INTEGER, price INTEGER)";
+        String DATABASE_CREATE_TABLE_ORDER = "create table OrderMeal ( _ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, TableNum INTEGER, OrderItem TEXT, Price INTEGER, Send INTEGER DEFAULT 0)";
 
         db.execSQL(DATABASE_CREATE_TABLE_MENU);
         db.execSQL(DATABASE_CREATE_TABLE_ORDER);
@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS Menu");
-        db.execSQL("DROP TABLE IF EXISTS Order");
+        db.execSQL("DROP TABLE IF EXISTS OrderMeal");
         onCreate(db);
     }
 }
