@@ -6,7 +6,9 @@ The other one(OrderClient) is used by guest.<br>
 It will let you save a lot of paper and money.<br>
 The most important thing is that the app can be used by most of catering shop.
 
-# Introduction
+Link: [OrderClient App](https://github.com/EricSyu/OrderClient)
+
+## Introduction
 * Input your shop name.
 * Create your meals species and meals name in the menu.
 * Not only the meal name, but you can also add the meal price,species,and picture.
@@ -16,7 +18,11 @@ The most important thing is that the app can be used by most of catering shop.
 * The app also provides the statistics chart.
 * The chart let you know what is the popular meal,monthly turnover,and daily turnover.
 
-# Screenshot
+## Use
+You must open the hot spot of your phone to let the guests connect.<br>
+Then open the app,and you can start to use.
+
+## Screenshot
 ![Image01](https://github.com/EricSyu/OrderBoss/blob/master/image/01.png?raw=true)
 ![Image02](https://github.com/EricSyu/OrderBoss/blob/master/image/02.jpg?raw=true)
 ![Image03](https://github.com/EricSyu/OrderBoss/blob/master/image/03.jpg?raw=true)
