@@ -1,5 +1,6 @@
 package middleproject.group.orderboss;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -8,11 +9,14 @@ import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -36,7 +40,6 @@ public class MainActivity extends AppCompatActivity
 
     public static final String MENU_UPDATE_ACTION = "main.receiver.UPDATE_MENU";
 
-    private DBHelper dbhelper = null;
     private String database_name = "";
 
     private NavigationView navigationView;
@@ -53,6 +56,8 @@ public class MainActivity extends AppCompatActivity
     private ItemTouchHelper mItemTouchHelper;
 
     private UIReceiver receiver;
+
+    private static final int REQUEST_LOCATION = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +77,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
-        directory = contextWrapper.getDir("MyData",MODE_APPEND);
+        directory = contextWrapper.getDir("OrderBoss",MODE_APPEND);
 
         if(fileIsExist()){
             try{
@@ -97,10 +102,9 @@ public class MainActivity extends AppCompatActivity
             editText_shopName = (EditText) dialog.findViewById(R.id.editText);
         }
 
-        openDatabase();
         init_nav_header();
 
-        orderMealDB = new OrderMealDB(getApplicationContext());orderMealDB.sample();
+        orderMealDB = new OrderMealDB(getApplicationContext());
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -114,6 +118,31 @@ public class MainActivity extends AppCompatActivity
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
 
         registerBroadcastReceiver();
+
+        startService(new Intent(this, ServerService.class));
+
+        requestPermission();
+    }
+
+    public void requestPermission(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_LOCATION);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_LOCATION:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+                    finish();
+                }
+                break;
+        }
     }
 
     public void registerBroadcastReceiver(){
@@ -165,16 +194,6 @@ public class MainActivity extends AppCompatActivity
         init_nav_header();
     }
 
-    /*function to call for opening database*/
-    private void openDatabase(){
-        dbhelper = new DBHelper(getApplicationContext());
-    }
-
-    /*function to call for closing database*/
-    private void closeDatabase(){
-        dbhelper.close();
-    }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -198,6 +217,14 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, CheckoutActivity.class);
             startActivity(intent);
         }
+        else if (id == R.id.nav_sales){
+            Intent intent = new Intent(this, SalesActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_income){
+            Intent intent = new Intent(this, IncomeActivity.class);
+            startActivity(intent);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -207,7 +234,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        closeDatabase();
         unregisterReceiver(receiver);
     }
 
@@ -219,8 +245,8 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+            mAdapter.setItems(orderMealDB.getNotSend());
             mAdapter.notifyDataSetChanged();
-            throw new UnsupportedOperationException("Not yet implemented");
         }
     }
 

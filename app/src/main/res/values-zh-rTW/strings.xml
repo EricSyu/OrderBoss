@@ -27,4 +27,20 @@
     <string name="title_activity_sales">餐點銷售統計</string>
     <string name="title_activity_income">營業額統計</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: MutiImageSelector -->
+    <string name="mis_folder_all">所有照片</string>
+    <string name="mis_preview">預覽</string>
+    <string name="mis_msg_no_camera">沒有系統相機</string>
+    <string name="mis_action_done">完成</string>
+    <string name="mis_photo_unit">張</string>
+    <string name="mis_tip_take_photo">拍照</string>
+    <string name="mis_error_image_not_exist">圖片錯誤</string>
+    <string name="mis_error_no_permission">無權限</string>
+    <string name="mis_permission_dialog_title">權限拒絕</string>
+    <string name="mis_permission_dialog_ok">好</string>
+    <string name="mis_permission_dialog_cancel">拒絕</string>
+    <string name="mis_permission_rationale">需要您提供瀏覽圖片權限</string>
+    <string name="mis_permission_rationale_write_storage">需要您提供寫入圖片權限</string>
+
 </resources>

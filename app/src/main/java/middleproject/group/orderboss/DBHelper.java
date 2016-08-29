@@ -19,7 +19,6 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context,database_name,null,VERSION);
     }
 
-    /*function to call database*/
     public static SQLiteDatabase getDatabase(Context context){
         if(database == null || !database.isOpen()){
             database = new DBHelper(context).getWritableDatabase();
@@ -29,8 +28,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String DATABASE_CREATE_TABLE_MENU = "create table Menu ( _ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name TEXT, Price INTEGER)";
-        String DATABASE_CREATE_TABLE_ORDER = "create table OrderMeal ( _ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, TableNum INTEGER, OrderItem TEXT, Price INTEGER, Send INTEGER DEFAULT 0)";
+        String DATABASE_CREATE_TABLE_MENU = "create table Menu ( _ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name TEXT, Price INTEGER, Species TEXT, SalesNum INTEGER DEFAULT 0, Picture TEXT)";
+        String DATABASE_CREATE_TABLE_ORDER = "create table OrderMeal ( _ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, TableNum INTEGER, OrderItem TEXT, Price INTEGER, Send INTEGER DEFAULT 0, Date TEXT)";
 
         db.execSQL(DATABASE_CREATE_TABLE_MENU);
         db.execSQL(DATABASE_CREATE_TABLE_ORDER);

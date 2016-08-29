@@ -10,16 +10,18 @@ public class OrderMealItem {
     private String orderItem;
     private int price;
     private int send;
+    private String date;
 
     public OrderMealItem(){
 
     }
 
-    public OrderMealItem(int table, String orderItem, int price, int send) {
+    public OrderMealItem(int table, String orderItem, int price, int send, String date) {
         this.table = table;
         this.orderItem = orderItem;
         this.price = price;
         this.send = send;
+        this.date = date;
     }
 
     public void setPrice(int price) {
@@ -60,5 +62,13 @@ public class OrderMealItem {
 
     public String getOrderItem() {
         return orderItem;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
