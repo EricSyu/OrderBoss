@@ -20,7 +20,7 @@ Link: [OrderClient App](https://github.com/EricSyu/OrderClient)
 
 ## Use
 You must open the hot spot of your phone to let the guests connect.<br>
-Then open the app,and you can start to use.
+Then open the app, and you can start to use.
 
 ## Screenshot
 ![Image01](https://github.com/EricSyu/OrderBoss/blob/master/image/01.png?raw=true)
